@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./style.css">
+    <title>toDoList</title>
+</head>
+<body>
+<main class="main">
+    <div class="new-todo">
+            <input class="new-todo__text"
+                   id="input"
+                   type="text"
+                   placeholder="Введите текст">
+            <div class="new-todo__btn" id="buttonAdd" onclick="addBtn()">
+                <span class="new-todo__item">Добавить</span>
+                <img class="new-todo__item"
+                     src="./assets/icons/plus-icon.svg"
+                     alt="plus-icon"/>
+            </div>
+    </div>
+    <div class="todo-list" id="todoList">
+
+    </div>
+</main>
+<script src="./script.js"></script>
+</body>
+</html>
