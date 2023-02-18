@@ -1,8 +1,9 @@
 const inputTodo = document.getElementById('input')
 const todoList = document.getElementById('todoList')
+const inputError = document.querySelector('.new-todo__input__error')
 const todos = []
 
-const noTodos = () => {
+function noTodos() {
     if (!todos.length) {
         todoList.innerHTML = `<h1 class="no-todos">Задач нет</h1>`
     }
@@ -12,7 +13,13 @@ noTodos()
 addNewTodo()
 
 function addBtn() {
-    if (!inputTodo.value) return
+    todoList.innerHTML = ''
+    if (!inputTodo.value) {
+        inputError.innerHTML = `<div>Поле не должно быть пустым</div>`
+        return
+    } else {
+        inputError.innerHTML = ``
+    }
     console.log(todos)
     todos.push(inputTodo.value)
     localStorage.setItem('TODO', JSON.stringify(todos))
@@ -21,15 +28,14 @@ function addBtn() {
 }
 
 function addNewTodo() {
-    todoList.innerHTML = ''
     const todos = JSON.parse(localStorage.getItem('TODO'))
-    todos.map((item, i) => {
+    todos.map((todo, i) => {
         const todoItem = document.createElement('div')
         todoItem.classList.add('todo-item')
         todoItem.innerHTML = `
             <input type="text" 
                    readonly 
-                   value="${item}" 
+                   value="${todo}" 
                    class="todo-item__input"
                    />
             <div class="todo-icons">
@@ -47,7 +53,7 @@ function addNewTodo() {
         `
         todoItem.addEventListener('click', e => {
             e.target.classList.contains('remove-todo') && removeTodo(i)
-            e.target.classList.contains('change-todo') && changeTodo(i)
+            e.target.classList.contains('change-todo') && changeTodo(e.currentTarget, i)
         })
         todoList.append(todoItem)
     })
@@ -59,13 +65,14 @@ function removeTodo(i) {
     addNewTodo()
 }
 
-function changeTodo(index) {
-    const input = document.querySelector('.todo-item__input')
+function changeTodo(el, i) {
+    console.log(el)
+    const input = el.querySelector('.todo-item__input')
     input.focus()
     input.removeAttribute('readonly')
     input.selectionStart = input.value.length
     input.addEventListener('change', () => {
-        todos[index] = input.value
+        todos[i] = input.value
         input.setAttribute('readonly', '')
         localStorage.setItem('TODO', JSON.stringify(todos))
         addNewTodo()

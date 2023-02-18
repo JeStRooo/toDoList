@@ -8,16 +8,20 @@
 <body>
 <main class="main">
     <div class="new-todo">
-            <input class="new-todo__text"
+        <div class="new-todo__form form">
+            <input class="new-todo__input"
                    id="input"
                    type="text"
-                   placeholder="Введите текст">
+                   placeholder="Введите текст"
+            >
             <div class="new-todo__btn" id="buttonAdd" onclick="addBtn()">
                 <span class="new-todo__item">Добавить</span>
                 <img class="new-todo__item"
                      src="./assets/icons/plus-icon.svg"
                      alt="plus-icon"/>
             </div>
+        </div>
+        <div class="new-todo__input__error"> </div>
     </div>
     <div class="todo-list" id="todoList">
 
