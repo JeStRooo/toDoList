@@ -97,11 +97,21 @@ body {
 }
 .todo-icons {
     display: flex;
-    gap: .5rem;
+    gap: .3rem;
 }
 .change-todo {
     cursor: pointer;
+    padding: 4px;
+}
+.change-todo:hover {
+    background: #ded9d9;
+    border-radius: 30%;
 }
 .remove-todo {
     cursor: pointer;
+    padding: 4px;
+}
+.remove-todo:hover {
+    background: #ded9d9;
+    border-radius: 30%;
 }

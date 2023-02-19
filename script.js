@@ -6,14 +6,14 @@ const todos = []
 function noTodos() {
     if (!todos.length) {
         todoList.innerHTML = `<h1 class="no-todos">Задач нет</h1>`
+    } else {
+        addNewTodo()
     }
 }
 noTodos()
 
-addNewTodo()
 
 function addBtn() {
-    todoList.innerHTML = ''
     if (!inputTodo.value) {
         inputError.innerHTML = `<div>Поле не должно быть пустым</div>`
         return
@@ -28,6 +28,7 @@ function addBtn() {
 }
 
 function addNewTodo() {
+    todoList.innerHTML = ''
     const todos = JSON.parse(localStorage.getItem('TODO'))
     todos.map((todo, i) => {
         const todoItem = document.createElement('div')
@@ -62,7 +63,7 @@ function addNewTodo() {
 function removeTodo(i) {
     todos.splice(i, 1)
     localStorage.setItem('TODO', JSON.stringify(todos))
-    addNewTodo()
+    noTodos()
 }
 
 function changeTodo(el, i) {
