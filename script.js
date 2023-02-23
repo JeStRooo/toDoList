@@ -4,6 +4,7 @@ const inputError = document.querySelector('.new-todo__input__error')
 const todos = []
 
 function noTodos() {
+    const todos = JSON.parse(localStorage.getItem('TODO'))
     if (!todos.length) {
         todoList.innerHTML = `<h1 class="no-todos">Задач нет</h1>`
     } else {
